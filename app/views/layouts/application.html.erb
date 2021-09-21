@@ -11,6 +11,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+            <a class="navbar-brand" href="#">Welcome Tech Chat App</a>
+          </nav>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
