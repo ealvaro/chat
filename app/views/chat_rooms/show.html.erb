@@ -1,0 +1,45 @@
+<h1>
+  <%= @chat_room.name %>
+</h1>
+
+<div class="row">
+  <div class="col-12 col-md-3">
+    <%= render partial: 'chat_rooms' %>
+  </div>
+
+  <div class="col">
+    <div class="chat">
+      <% @chat_room_messages.each do |chat_room_message| %>
+        <div class="col">
+          <div class="message-content">
+            <p class="mb-1">
+              <%= chat_room_message.message %>
+            </p>
+
+            <div class="text-right">
+              <small>
+                <%= chat_room_message.created_at %>
+              </small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%= simple_form_for @chat_room_message, remote: true do |form| %>
+      <div class="input-group mb-3">
+        <%= form.input :message, as: :string,
+                                 wrapper: false,
+                                 label: false,
+                                 input_html: {
+                                   class: 'chat-input'
+                                 } %>
+        <div class="input-group-append">
+          <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
+        </div>
+      </div>
+
+      <%= form.input :chat_room_id, as: :hidden %>
+    <% end %>
+  </div>
+</div>
