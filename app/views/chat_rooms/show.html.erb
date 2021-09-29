@@ -8,18 +8,28 @@
   </div>
 
   <div class="col">
-    <div class="chat">
+    <div class="chat" data-channel-subscribe="chat_room" data-room-id="<%= @chat_room.id %>">
       <% @chat_room_messages.each do |chat_room_message| %>
-        <div class="col">
-          <div class="message-content">
-            <p class="mb-1">
-              <%= chat_room_message.message %>
-            </p>
+        <div>
+          <div class="row no-gutters">
+            <div class="col-auto text-center">
+              <p class="mb-1">
+                <%= chat_room_message.user.username %>
+              </p>
+            </div>
 
-            <div class="text-right">
-              <small>
-                <%= chat_room_message.created_at %>
-              </small>
+            <div class="col">
+              <div class="message-content">
+                <p class="mb-1">
+                  <%= chat_room_message.message %>
+                </p>
+
+                <div class="text-right">
+                  <small>
+                    <%= chat_room_message.created_at %>
+                  </small>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -41,5 +51,24 @@
 
       <%= form.input :chat_room_id, as: :hidden %>
     <% end %>
+  </div>
+</div>
+
+<div class="d-none" data-role="message-template">
+  <div>
+    <div class="row no-gutters">
+      <div class="col-auto text-center">
+        <p class="mb-1"></p>
+      </div>
+      <div class="col">
+        <div class="message-content">
+          <p class="mb-1" data-role="message-text"></p>
+
+          <div class="text-right">
+            <small data-role="message-date"></small>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

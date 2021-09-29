@@ -31,7 +31,7 @@ class ChatRoomsController < ApplicationController
   def show
     @chat_rooms = ChatRoom.all
     @chat_room = ChatRoom.find(params[:id]) if params[:id]
-    @chat_room_message = ChatRoomMessage.new chat_room: @chat_room
+    @chat_room_message = ChatRoomMessage.new(chat_room: @chat_room)
     @chat_room_messages = @chat_room.chat_room_messages.includes(:user)
   end
 
